@@ -1,3 +1,3 @@
-import { Ship } from "./scripts/ship";
-
-Ship(4)
+import "./styles.css"
+import "./scripts/game_loop.js"
+import "./scripts/dom_handler.js"
