@@ -20,8 +20,10 @@ body{
     font-family: 'Play', sans-serif;
     letter-spacing: 3px;
     font-size: larger;
+    position: relative;
+
 }
-#first_player_grid, #second_player_grid{
+#first_player_grid, #second_player_grid, #layout_grid{
     display: grid;
     grid-template-rows: repeat(10, 1fr);
     grid-template-columns: repeat(10, 1fr);
@@ -40,4 +42,44 @@ body{
 }
 .cell.empty{
     background-color: greenyellow;
+}
+#container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;  
+    align-items: center;
+}
+#ship_container_div{
+    display: flex;
+    width:390px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 50px;
+    border: 2px solid white;
+    padding:40px;
+    gap:70px
+}
+.ship_container{
+    display: flex;
+}
+.ship_container.horizontal{
+    flex-direction: row;
+}
+.ship_container.vertical{
+    flex-direction: column;
+}
+
+#play_button{
+    width: 100px;
+    height:50px;
+    background-color: none;
+    border: 3px white solid;
+
+}
+#winner_heading{
+    position: absolute;
+    top:200px;
+    color: white;
+    font-family: "Play", sans-serif;
 }

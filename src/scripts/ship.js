@@ -1,10 +1,11 @@
 const Ship = (len, t) => {
     const length = len;
-    const type = t;
+    let type = t;
     const ship = []
     const getShipLength = () => {return length};
     const getType = () => {return type};
     const getShip = () => {return ship}
+    const changeType = (new_type) => {type = new_type};
     const createShip = () => {
         for(let i = 0; i < length; i++){
             ship.push({"hit": false});
@@ -23,6 +24,6 @@ const Ship = (len, t) => {
         return true;
     }
 
-    return {getShipLength, getType,getShip, createShip, hit, isSunk}
+    return {getShipLength, getType,getShip, createShip, changeType, hit, isSunk}
 }
 export {Ship}

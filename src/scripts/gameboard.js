@@ -1,3 +1,4 @@
+import { checkArray } from "./dom_handler";
 export const Gameboard = (dimensions) => {
     const board = [];
     const shots_hit = [];
@@ -29,7 +30,7 @@ export const Gameboard = (dimensions) => {
     }
     const recieveAttack = (y, x) => {
         const coord = board[y][x].ship_type;
-        if(isAlreadyHit(y, x)){
+        if(isAlreadyHit([y, x])){
             return false;
         }
         shots_hit.push([y, x]);
@@ -43,14 +44,22 @@ export const Gameboard = (dimensions) => {
         }
 
     } 
-    const isAlreadyHit = (y, x) => {
-        return shots_hit.includes([y, x]);
+    const isAlreadyHit = (coords) => {
+        if(!shots_hit.length){
+            return false;
+        }
+        for(let i = 0; i < shots_hit.length; i++){
+            if((shots_hit[i][0] === coords[0]) && (shots_hit[i][1] === coords[1])){
+                return true;
+            }
+        }
+        return false;
     }
     const isAllSunk = () => {
-        for(let i = 0; i < board; i++){
-            for(let j = 0; j < board[i]; j++){
-                if(board[y][x].ship_type){
-                    if(!board[y][x].ship_type.isSunk()){
+        for(let i = 0; i < board.length; i++){
+            for(let j = 0; j < board[i].length; j++){
+                if(board[i][j].ship_type){
+                    if(!board[i][j].ship_type.isSunk()){
                         return false;
                     }
                 }
@@ -59,7 +68,7 @@ export const Gameboard = (dimensions) => {
         return true;
     }
     const isWithinBounds = (y, x, ship) => {
-        return ship.getType() === "horizontal" ? (x + ship.getShipLength()) < dimensions : (y + ship.getShipLength()) <  dimensions
+        return ship.getType() === "horizontal" ? (x + ship.getShipLength()) < dimensions + 1: (y + ship.getShipLength()) <  dimensions + 1
     }
     //TODO: Figure out how this works and write tests for it
     const isIntersecting = (y, x, ship) => {
