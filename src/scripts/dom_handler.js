@@ -150,6 +150,8 @@ export function make_layout_gui(ships, layout_gameboard){
     add_listeners(cells, "dragenter", handle_ship_drag_enter);
     add_listeners(cells, "dragover", handle_ship_drag_over);
     cells.forEach((cell) => cell.addEventListener("drop", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         const coord = e.target.getAttribute("index_value")
         const y = Math.floor(coord / 10);
         const x = coord % 10;
